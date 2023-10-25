@@ -19,6 +19,7 @@ function MyApp() {
 //const [price, setPrice] = useState('0');
 const [results, setResults] = useState([]);
 const [nombresNFT, setNombresNFT] = useState([]);
+const [description, setDescription] = useState([]);
 
 const client = createPublicClient({
   chain:sepolia,
@@ -31,7 +32,7 @@ async function fetchData() {
   //let estimateFees_Per_Gas = await client.getGasPrice();
   let results = [];
   let nombresNFT = []
-
+  let description
  
   for (let i = 1; i <= 12; i++){
     try{
@@ -44,15 +45,20 @@ async function fetchData() {
       if (result) {
         let parsedResult = JSON.parse(result); // Analizar la cadena JSON
         console.log("Nombre:", parsedResult.name);
-        console.log("Descripción:", parsedResult.description);
+        description = parsedResult.description;
         results.push(parsedResult);
         nombresNFT.push(parsedResult.name); 
       }
   }catch(error){
     console.error(error);
   }
-  
-  console.log("Nomnbres", nombresNFT)
+  nombresNFT.sort((a, b) => {
+    const aNumber = parseInt(a.match(/\d+$/)[0]);
+    const bNumber = parseInt(b.match(/\d+$/)[0]);
+    return aNumber - bNumber;
+  });
+
+  console.log("Nombres", nombresNFT)
 }
   /*let balance = await client.readContract({
     address:'0x97c6f93ae8C03bFFc6262c9F4914c26F9Ef26f42',
@@ -73,8 +79,9 @@ async function fetchData() {
 
   
   console.log("ResultNombre", results.name);
-  console.log("ResultTS", results[0]);
+  console.log("ResultTS0", results[0]);
   console.log("ResultTS", results);
+  console.log("ResultTSDESCRIP", results.description);
   //let transactionCountlet = await client.getTransactionCount();
   console.log("Hola");
   //console.log("Balance", balance);
@@ -88,6 +95,7 @@ async function fetchData() {
   //setDeposit(_deposit.toString());
   setResults(results);
   setNombresNFT(nombresNFT);
+  setDescription(description);
   }
 
   useEffect(() => {
@@ -95,63 +103,69 @@ async function fetchData() {
   }, []);
 
   return (
-  <div className='container'>
+  <div className='global_container'>
+    <div>
+      <h1>Colección de NFT FutureGarden</h1>
+      <h2>{description}</h2>    
+    </div>
+    <div className='container'>
 
-    <div className='photos_row'>
+      <div className='photos_row'>
+        <div className='nft_container'>
+          <img className='photo' src="/imagenes/FutureGarden_1.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[0]}</p>
+        </div>
       <div className='nft_container'>
-        <img className='photo' src="/imagenes/FutureGarden_1.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[0]}</p>
-      </div>
-     <div>
-        <img className='photo' src="/imagenes/FutureGarden_2.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[1]}</p>
-      </div>
-      <div>
-        <img className='photo' src="/imagenes/FutureGarden_3.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[2]}</p>
-      </div>
-      <div>
-        <img className='photo' src="/imagenes/FutureGarden_4.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[3]}</p>
-      </div>
-    </div> 
-    <div className='photos_row'>
+          <img className='photo' src="/imagenes/FutureGarden_2.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[1]}</p>
+        </div>
+        <div className='nft_container'>
+          <img className='photo' src="/imagenes/FutureGarden_3.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[2]}</p>
+        </div>
+        <div className='nft_container'>
+          <img className='photo' src="/imagenes/FutureGarden_4.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[3]}</p>
+        </div>
+      </div> 
+      <div className='photos_row'>
+        <div className='nft_container'>
+          <img className='photo' src="/imagenes/FutureGarden_5.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[4]}</p>
+        </div>
       <div className='nft_container'>
-        <img className='photo' src="/imagenes/FutureGarden_5.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[4]}</p>
-      </div>
-     <div>
-        <img className='photo' src="/imagenes/FutureGarden_6.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[5]}</p>
-      </div>
-      <div>
-        <img className='photo' src="/imagenes/FutureGarden_7.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[6]}</p>
-      </div>
-      <div>
-        <img className='photo' src="/imagenes/FutureGarden_8.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[7]}</p>
-      </div>
-    </div> 
-    <div className='photos_row'>
+          <img className='photo' src="/imagenes/FutureGarden_6.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[5]}</p>
+        </div>
+        <div className='nft_container'>
+          <img className='photo' src="/imagenes/FutureGarden_7.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[6]}</p>
+        </div>
+        <div className='nft_container'>
+          <img className='photo' src="/imagenes/FutureGarden_8.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[7]}</p>
+        </div>
+      </div> 
+      <div className='photos_row'>
+        <div className='nft_container'>
+          <img className='photo' src="/imagenes/FutureGarden_9.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[8]}</p>
+        </div>
       <div className='nft_container'>
-        <img className='photo' src="/imagenes/FutureGarden_9.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[8]}</p>
-      </div>
-     <div>
-        <img className='photo' src="/imagenes/FutureGarden_10.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[9]}</p>
-      </div>
-      <div>
-        <img className='photo' src="/imagenes/FutureGarden_11.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[10]}</p>
-      </div>
-      <div>
-        <img className='photo' src="/imagenes/FutureGarden_12.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
-        <p>{nombresNFT[11]}</p>
-      </div>
-    </div> 
-    
+          <img className='photo' src="/imagenes/FutureGarden_10.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[9]}</p>
+        </div>
+        <div className='nft_container'>
+          <img className='photo' src="/imagenes/FutureGarden_11.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[10]}</p>
+        </div>
+        <div className='nft_container'>
+          <img className='photo' src="/imagenes/FutureGarden_12.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
+          <p>{nombresNFT[11]}</p>
+        </div>
+      </div> 
+      
+    </div>
   </div>
   );
     
