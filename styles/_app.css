@@ -1,12 +1,26 @@
-.photo{
-    width: 15vw;
-    height: 25vw;
+.container{
+    width: 70vw;
 }
-.photos_rpw{
+
+.nft_container{
+    background-color: blue;
+    border: 2px solid rgb(249, 6, 6);
+}
+
+.photo{
+    width: 20vw;
+    height: 30vw;
+}
+.photos_row{
+    width: 70vw;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    margin: 2%;
+    padding: 2%;
 }
 
 p{
     background-color: chocolate;
+    width: 20vw;
 }
