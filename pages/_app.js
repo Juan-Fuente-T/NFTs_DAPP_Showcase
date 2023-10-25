@@ -80,7 +80,7 @@ async function fetchData() {
 
   return (
   <div>
-    <div>
+    <div className='photos_row'>
       <div>
         <img className='photo' src="/imagenes/FutureGarden_2.jpg" alt="Fotografía de un NFT de naturaleza tratada digitalmente"/>
         <p>{results[0]}</p>

@@ -2,6 +2,11 @@
     width: 15vw;
     height: 25vw;
 }
+.photos_rpw{
+    display: flex;
+    flex-direction: row;
+}
+
 p{
     background-color: chocolate;
 }
