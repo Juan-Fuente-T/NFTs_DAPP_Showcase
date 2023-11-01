@@ -1,0 +1,20 @@
+/* index.module.css */
+
+/* Estilo para el contenedor principal */
+.container {
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f0f0; /* Color de fondo personalizado */
+}
+
+/* Estilo para el título */
+.title {
+  font-size: 2rem;
+  color: #333; /* Color de texto personalizado */
+}
+
+/* Estilo para la descripción */
+.description {
+  font-size: 1.2rem;
+  color: #777; /* Otro color de texto personalizado */
+}

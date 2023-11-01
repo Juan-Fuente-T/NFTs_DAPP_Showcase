@@ -1,34 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NFT Showcase App
 
-## Getting Started
+## Description
+This application is a showcase to display my own collection of NFTs (Non-Fungible Tokens) based on the ERC721 standard. The NFTs displayed in this application come from a small collection of 12 NFTs, created from photographs and hosted on Pinata IPFS. This collection is titled "Future Garden."
 
-First, run the development server:
+## Link to the NFT Repository
+The NFTs showcased in this application have been automatically minted using the codes from the following repository:
+[NFT Repository](https://github.com/Juan-Fuente-T/NFT)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Application Features
+- Displays a collection of NFTs based on the ERC721 standard.
+- Provides information about each NFT, including a name and a general description for all.
+- Allows users to explore and enjoy the collection of NFTs.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Built with:
+- React
+- Next.js
+- Javascript
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Using the Application
+To interact with this application, follow these steps:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+1. [Installation](#installation): Clone this repository and set up the development environment.
+2. [Deployment](#deployment): Deploy the application on a server or platform of your choice or locally at http://localhost:3000.
+3. [Exploration](#exploration): Explore the collection of NFTs and enjoy the showcase.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Installation
+Follow these steps to set up the development environment and run the application on your machine:
 
-## Learn More
+1. Clone this repository:
 
-To learn more about Next.js, take a look at the following resources:
+   In the terminal:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    #### git clone insert_repository_link_here
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Navigate to the application directory:
 
-## Deploy on Vercel
+    #### cd nft-showcase-app
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Install the dependencies:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    #### npm install
+
+4. Deployment
+
+Once you have set up the development environment and are satisfied with the application, you can deploy it on a server or platform of your choice. Make sure users can easily access the collection of NFTs.
+
+Or run it locally with:
+
+    #### yarn dev
+or
+
+    #### npm run start
+
+## Contribution and Support
+This project is open-source, so you can contribute, make improvements, and customize it as needed. If you have questions or need assistance, feel free to create an issue or request help in the repository's issues section.
+
+### I hope you find this application interesting and useful as a showcase for your NFT collection!

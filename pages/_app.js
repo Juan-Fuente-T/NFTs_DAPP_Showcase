@@ -1,64 +1,58 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react';
-//import '../styles/globals.css'
 import '../styles/_app.css'
 import abi from '../abi.json';
 import { createPublicClient, http, createWalletClient } from 'viem';
-import { PrivateKeyToAccount, privateKeyToAccount } from 'viem/accounts';
-import { mainnet } from 'viem/chains';
+//import { PrivateKeyToAccount, privateKeyToAccount } from 'viem/accounts';
 import { sepolia } from 'viem/chains';
 
 function MyApp() {
   
-//const [_deposit, setDeposit] = useState('0');
-//const [balance, setBalance] = useState('0');
-//const [blockNumber, setBlockNumber] = useState('0');
-//const [estimateFeesPerGas, setEstimateFeesPerGas] = useState('0');
-//const [price, setPrice] = useState('0');
-const [results, setResults] = useState([]);
-const [nombresNFT, setNombresNFT] = useState([]);
-const [description, setDescription] = useState([]);
+/*const [balance, setBalance] = useState('0');
+const [blockNumber, setBlockNumber] = useState('0');*/
 
+// Declaración de estados utilizando el hook useState para gestionar la información.  
+const [results, setResults] = useState([]); // Se almacenan los resultados obtenidos.
+const [nombresNFT, setNombresNFT] = useState([]); // Se almacenan los nombres de los NFT.
+const [description, setDescription] = useState([]); // Se almacena la descripción de la colección.
+
+// Creación de un cliente para interactuar con la blockchain usando el estándar Viem.
 const client = createPublicClient({
-  chain:sepolia,
-  transport: http(),
+  chain:sepolia,// Configuración de la cadena de bloques.
+  transport: http(), // Configuración del método de transporte para la comunicación con la blockchain.
 })
-
+// Función asincrónica para obtener datos de la blockchain.
 async function fetchData() {
   //let balance = await client.getBalance();
   //let blockNum  = await client.getBlockNumber();
-  //let estimateFees_Per_Gas = await client.getGasPrice();
-  let results = [];
-  let nombresNFT = []
-  let description
- 
-  for (let i = 1; i <= 12; i++){
+  let results = []; // Se declara un array vacío donde se guardarán los resultados obtenidos.
+  let nombresNFT = []; // Se declara un array vacío donde se guardarán los nombres de los NFT.
+  let description; // Se declara una variable donde se guardarán la descripción de la coleccióne, vacía por defecto.
+
+  // Bucle para obtener información de varios NFTs (del 1 al 12).
+  for (let i = 1; i <= 12; i++){ //Bucle para obtener las URI de los 12 NFT
     try{
-      const result = await client.readContract({
+      const result = await client.readContract({ //Se establece un client para leer datos en el contrato que se de indica
         address:'0x97bfA6146059EE86283CED687D8e7f8D5e393D58',
         functionName:'tokenURI',
         abi: abi,
         args: [i.toString()]
       });
       if (result) {
-        let parsedResult = JSON.parse(result); // Analizar la cadena JSON
-        console.log("Nombre:", parsedResult.name);
-        description = parsedResult.description;
-        results.push(parsedResult);
-        nombresNFT.push(parsedResult.name); 
+        let parsedResult = JSON.parse(result); // Se analiza la cadena JSON devuelta 
+        //console.log("Nombre:", parsedResult.name); log de depuracion
+        description = parsedResult.description; //Se guarda la descripcion de la coleccion de NFT recibidos 
+        results.push(parsedResult); //Se guardan los resultados recibidos en el array
+        nombresNFT.push(parsedResult.name); //Se guardan los nombres de los NFT en el array
       }
   }catch(error){
     console.error(error);
   }
+  //Se ordenan los nombres de los NFTs por orden numerico.
   nombresNFT.sort((a, b) => {
-    const aNumber = parseInt(a.match(/\d+$/)[0]);
-    const bNumber = parseInt(b.match(/\d+$/)[0]);
-    return aNumber - bNumber;
+    const aNumber = parseInt(a.match(/\d+$/)[0]); //se extraen los carateres numericos a un elemento a
+    const bNumber = parseInt(b.match(/\d+$/)[0]); //se extraen los carateres numericos a un elemento b
+    return aNumber - bNumber; //se restan entre si para obtener su orden desde los mayores negativos a los mayores positivos
   });
-
-  console.log("Nombres", nombresNFT)
 }
   /*let balance = await client.readContract({
     address:'0x97c6f93ae8C03bFFc6262c9F4914c26F9Ef26f42',
@@ -66,42 +60,28 @@ async function fetchData() {
     functionName:'balanceOf',
     args: ['0xe67F18c5064f12470Efc943798236edF45CF3Afb']
   });
-  try{
-    let _deposit = await wallet.writeContract({
-    address:'0x97c6f93ae8C03bFFc6262c9F4914c26F9Ef26f42',
-    abi: abi,
-    functionName:'deposit',
-    args: ['0.000001']
-  });
-}catch (error){
-  console.log(error)
-}*/
-
-  
-  console.log("ResultNombre", results.name);
+ */
+  /*console.log("ResultNombre", results.name);
   console.log("ResultTS0", results[0]);
   console.log("ResultTS", results);
-  console.log("ResultTSDESCRIP", results.description);
-  //let transactionCountlet = await client.getTransactionCount();
-  console.log("Hola");
+  console.log("ResultTSDESCRIP", results.description);*/
   //console.log("Balance", balance);
-  //console.log("TransactionCount", transactionCount);
   //console.log("BlockNumber", blockNumber);
   //console.log("Balance", balance);
   //setBlockNumber(blockNum.toString());
-  //setEstimateFeesPerGas(estimateFees_Per_Gas.toString());
-  //setPrice(result.toString());
   //setBalance(balance.toString());
-  //setDeposit(_deposit.toString());
+  
+  // Establecer los estados con los datos obtenidos.
   setResults(results);
   setNombresNFT(nombresNFT);
   setDescription(description);
   }
-
+  // Effect que se ejecuta al cargar el componente para obtener los datos de la blockchain.
   useEffect(() => {
-    fetchData();
+    fetchData();//Se ejecuta la funcion para obtener los datos de la blockchain
   }, []);
 
+  //Se muestran los NFT dentro de una estrctura HTML
   return (
   <div className='global_container'>
     <div>
@@ -164,26 +144,9 @@ async function fetchData() {
           <p>{nombresNFT[11]}</p>
         </div>
       </div> 
-      
     </div>
   </div>
   );
     
 }
-/*
-  async function fetchData() {
-    let result = await client.readContract({
-      address:'0x97bfA6146059EE86283CED687D8e7f8D5e393D58',
-      functionName:'tokenURI',
-      abi: abi,
-      args: ['1']
-    });
-
-    setResult(result);
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-*/ 
 export default MyApp
