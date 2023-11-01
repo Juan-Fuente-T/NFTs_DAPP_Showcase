@@ -1,5 +1,8 @@
 # NFT Showcase App
 
+![NFT_DAPP_Showcase](https://github.com/Juan-Fuente-T/NFTs_DAPP_Showcase/assets/127140423/55a19efd-d0a6-4f4f-97f0-1cb37b14d15d)
+
+
 ## Description
 This application is a showcase to display my own collection of NFTs (Non-Fungible Tokens) based on the ERC721 standard. The NFTs displayed in this application come from a small collection of 12 NFTs, created from photographs and hosted on Pinata IPFS. This collection is titled "Future Garden."
 
