@@ -47,10 +47,10 @@ Once you have set up the development environment and are satisfied with the appl
 
 Or run it locally with:
 
-    #### yarn dev
+    - yarn dev
 or
 
-    #### npm run start
+    - npm run start
 
 ## Contribution and Support
 This project is open-source, so you can contribute, make improvements, and customize it as needed. If you have questions or need assistance, feel free to create an issue or request help in the repository's issues section.
